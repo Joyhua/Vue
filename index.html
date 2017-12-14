@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue.js</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+	<div id="vue-app">
+	<h1>{{ name }}</h1>
+	<h1>{{greet('evening')}}</h1>
+	<a v-bind:href="website">必应搜索</a>
+	<p v-html="elementTag"></p>
+	
+	<!--作为属性方法需要括号，作为值不需要，传参数时都需要括号-->
+	<!--@和v-on:两种方式都可以-->
+	<button @click="addAge(1)">增长年龄</button>
+	<button @click.once="addAge(1)">增长年龄</button><!--只有一次生效-->
+	<p>my age is {{age}}</p>
+	<div id="canvas" v-on:mousemove="update">{{x}},{{y}}
+		
+		<!--阻止冒泡-->
+	<span @mousemove="stopMoving">stop move</span>
+	<!--vue特有修饰符<span @mousemove.stop=""></span>-->
+	</div>
+	<!--阻止默认事件-->
+	<a @click.prevent="" href="http://www.bing.com"></a>
+	
+	
+	<input type="text" @keyup="logName" />
+	<input type="text" @keyup="logAge" />
+	<input type="text" @keyup.enter="logName" /><!--输入完按enter键触发-->
+	<input type="text" @keyup.alt.enter="logAge" /><!--输入完按alt+enter键触发-->
+	
+	<!--双向绑定	-->
+	<input type="text" ref="name" @keyup="dubble" /><!--==-->
+	<input type="text" v-model="name" />
+	
+	<span>{{name}}</span>
+	
+	<!--computed计算属性-->
+	<button @click="a++">add to A</button>
+	<button @click="b++">add to B</button>
+	<!--{{a}},{{b}},age+A={{addA()}},age+B={{addB()}}-->
+	
+	<button @click="a++">add to A1</button>
+	<button @click="b++">add to B1</button>
+	<!--注意computed不用括号-->
+	{{a}},{{b}},age+A={{add1A}},age+B={{add1B}}
+	
+	
+	<!--样式绑定-->
+	<h2 @click="changeColor=!changeColor" v-bind:class="{red:changeColor,blue:!changeColor}">chageColor</h2>
+	
+	<greeting></greeting>
+	</div>
+	<div id="vue-app-two">
+		<div>{{name}}</div>
+		<button @click="changeName">change</button>
+		<greeting></greeting>
+	</div>
+		<script src="app.js"></script>
+	</body>
+</html>

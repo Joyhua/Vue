@@ -1,0 +1,7 @@
+p,div,button{font-size: 1.6rem;}
+a{font-size: 3rem;}
+#canvas{
+	width: 200px;height: 200px;border: 1px solid #000;
+}
+.red{color: red;}
+.blue{color:blue;}
